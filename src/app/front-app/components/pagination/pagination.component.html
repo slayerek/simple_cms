@@ -1,0 +1,9 @@
+<ul>
+    <li *ngFor="let item of numberOfPages;let i = index">
+        <span (click)="choosePage(i)">
+            {{ i + 1 }}
+        </span>    
+    </li>
+</ul>    
+
+

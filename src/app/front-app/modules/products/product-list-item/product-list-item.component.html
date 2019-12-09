@@ -1,0 +1,18 @@
+
+<p>
+    {{product.name}}
+</p>
+<p>
+    {{product.price}}
+</p>
+<p>
+    {{product.details}}
+</p>
+<a [routerLink]="[product.url]">
+    more
+</a>
+<br /><br />
+<button type="button" (click)="addToCart(product)">
+    Dodaj do koszyka
+</button>    
+<hr />

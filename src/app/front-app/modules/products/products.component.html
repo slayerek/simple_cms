@@ -1,0 +1,14 @@
+<div style="width:49%;float:left;border:1px solid #dfdfdf">
+    <app-product-list [products]="productsView">
+    </app-product-list>
+
+    <app-pagination [numberOfPages]="numberOfPages" (pageNumber)="choosePage($event)">
+    </app-pagination>
+</div>    
+<div style="width:49%;float:left;border:1px solid #dfdfdf">
+    <app-cart>
+    </app-cart>
+</div>
+
+<hr />
+
