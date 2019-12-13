@@ -16,34 +16,34 @@ export class CartComponent implements OnInit {
 
     ngOnInit() {
         this.cart.cartItemsMessage.subscribe(cartProds => {
-            this.cartItems = cartProds.length ? cartProds : this.cart.getItemsFromCart();
+            this.cartItems = this.cart.getItemsFromCart();
         });
         this.cart.cartItemsSum.subscribe(cartItemsSum => {
             this.cartItemsSum = cartItemsSum;
         });
     }
 
-    public increaseItem(product: Product) {
+    public increaseItem(product: Product): void {
         this.cart.addItemToCart(product);
         this.updateProductsInCart();
     }
 
-    public decreaseItem(product: Product) {
+    public decreaseItem(product: Product): void {
         this.cart.removeItemFromCart(product, this.cartItems);
         this.updateProductsInCart();
     }
 
-    public removeAllItemsFromCart() {
+    public removeAllItemsFromCart(): void {
         this.cart.removeAllItemsFromCart();
         this.updateProductsInCart();
     }
 
-    private updateProductsInCart() {
+    private updateProductsInCart(): void {
         this.cart.cartItemsMessage.next(this.cart.getItemsFromCart());//update products in cart
         this.cart.cartItemsSum.next(this.cart.getProductsSum());//update products price
     }
 
-    public parseNumberToString(price: number, decimals: number = 2) {
+    public parseNumberToString(price: number, decimals: number = 2): string {
         return price.toFixed(decimals);
     }//use in view
 

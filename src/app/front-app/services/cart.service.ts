@@ -14,7 +14,7 @@ export class CartService implements Cart {
     public cartItemsMessage = new BehaviorSubject([]);
     public cartItemsSum = new BehaviorSubject(this.getProductsSum());
 
-    public addItemToCart(product: Product) {
+    public addItemToCart(product: Product): void {
 
         let products = [];
 
@@ -38,7 +38,7 @@ export class CartService implements Cart {
 
     }
 
-    public removeItemFromCart(product: Product, products: Product[]) {
+    public removeItemFromCart(product: Product, products: Product[]): void {
 
         const id = this.findInd(products, product);
 
@@ -53,11 +53,11 @@ export class CartService implements Cart {
 
     }
 
-    public removeAllItemsFromCart() {
+    public removeAllItemsFromCart(): void {
         this.cookie.set('cartProducts', this.arrayToString([]), 2);
     }
 
-    public getItemsFromCart() {
+    public getItemsFromCart(): Product[] {
 
         const products = this.cookie.get('cartProducts');
 
@@ -65,10 +65,10 @@ export class CartService implements Cart {
             return this.stringToArray(products);
         }
 
-        return null;
+        return [];
     }
 
-    public getProductsSum() {
+    public getProductsSum(): number {
 
         const products = this.getItemsFromCart();
         let productsSum = 0;
@@ -86,11 +86,11 @@ export class CartService implements Cart {
         return 0;
     }
 
-    private arrayToString(arr: Object[]) {
+    private arrayToString(arr: Object[]): string {
         return JSON.stringify(arr);
     }
 
-    private stringToArray(arr: string) {
+    private stringToArray(arr: string): Product[] {
         const prodArr = JSON.parse(arr).map(product => {
             return new Product(
                 product.id,
@@ -106,7 +106,7 @@ export class CartService implements Cart {
         return prodArr;
     }
 
-    private findInd(arr: Product[], prod: Product) {
+    private findInd(arr: Product[], prod: Product): number {
         const id = arr.findIndex(item => {
             return prod.id == item.id;
         });

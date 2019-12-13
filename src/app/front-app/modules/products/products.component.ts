@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Product} from '../../models/product.model';
 import {ProductsService} from '../../services/products.service';
-import {Observable} from 'rxjs';
 import {environment} from '../../../../environments/environment';
 
 @Component({
@@ -35,15 +34,15 @@ export class ProductsComponent implements OnInit {
 
     }
 
-    public choosePage(pageNumber: number) {
+    public choosePage(pageNumber: number): void {
         this.updatePaginatedProducts(pageNumber);
     }
 
-    private getNumberOfPages(products: Product[]) {
+    private getNumberOfPages(products: Product[]): number[] {
         return new Array(Math.ceil(products.length / this.configProducstNumber));
     }//generate and get number of pages - need that to pagination
 
-    private updatePaginatedProducts(page: number) {
+    private updatePaginatedProducts(page: number): void {
         this.productsSerivce.getProducts().subscribe(products => {
             const productsNewArr = products.slice(page * this.configProducstNumber, this.configProducstNumber + (page * this.configProducstNumber));
             this.productsSerivce.productsData.next(productsNewArr);

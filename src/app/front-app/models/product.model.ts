@@ -21,7 +21,7 @@ export class Product implements ProductInterface {
         this.quantity = quantity;
     }
 
-    public getProductPrice() {
+    public getProductPrice(): number {
 
         const discountCode = environment.discountCode;
 
@@ -29,7 +29,7 @@ export class Product implements ProductInterface {
 
     }
 
-    public getProductSum() {
+    public getProductSum(): number {
 
         const discountCode = environment.discountCode;
 

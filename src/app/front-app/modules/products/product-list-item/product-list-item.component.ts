@@ -16,12 +16,12 @@ export class ProductListItemComponent implements OnInit {
     ngOnInit() {
     }
 
-    public addToCart(product) {
+    public addToCart(product): void {
         this.cart.addItemToCart(product);
         this.updateProductsInCart();
     }
 
-    private updateProductsInCart() {
+    private updateProductsInCart(): void {
         this.cart.cartItemsMessage.next(this.cart.getItemsFromCart());//update products in cart
         this.cart.cartItemsSum.next(this.cart.getProductsSum());//update products price
     }
