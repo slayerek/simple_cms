@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Product} from '../../models/product.model';
 import {ProductsService} from '../../services/products.service';
 import {environment} from '../../../../environments/environment';
+import {CartService} from '../../services/cart.service';
 
 @Component({
     selector: 'app-products',
@@ -13,8 +14,13 @@ export class ProductsComponent implements OnInit {
     public productsView: Product[];
     public numberOfPages: number[];
     private configProducstNumber: number = environment.productsNumber;
+    public cartItems: Product[];
+    public cartItemsSum: number = 0;
 
-    constructor(private productsSerivce: ProductsService) {}
+    constructor(
+        private productsSerivce: ProductsService,
+        private cart: CartService
+    ) {}
 
     ngOnInit() {
 
@@ -32,6 +38,13 @@ export class ProductsComponent implements OnInit {
             }
         );//update products when someone click pagination button number
 
+        this.cart.cartItemsMessage.subscribe(cartProds => {
+            this.cartItems = this.cart.getItemsFromCart();
+        });
+        this.cart.cartItemsSum.subscribe(cartItemsSum => {
+            this.cartItemsSum = cartItemsSum;
+        });
+
     }
 
     public choosePage(pageNumber: number): void {
@@ -48,5 +61,38 @@ export class ProductsComponent implements OnInit {
             this.productsSerivce.productsData.next(productsNewArr);
         });
     }
+
+
+    /*cart section*/
+
+    public removeAllItemsFromCart(remove: boolean): void {
+
+        if (remove) {
+            this.cart.removeAllItemsFromCart();
+            this.updateProductsInCart();
+        }
+    }
+
+    public increaseDecreaseItem(item): void {
+
+        switch (item['actionType']) {
+            case 'add':
+                this.cart.addItemToCart(item['product']);
+                break;
+            case 'remove':
+                this.cart.removeItemFromCart(item['product']);
+                break;
+        }
+
+        this.updateProductsInCart();
+
+    }
+
+    private updateProductsInCart(): void {
+        this.cart.cartItemsMessage.next(this.cart.getItemsFromCart());//update products in cart
+        this.cart.cartItemsSum.next(this.cart.getProductsSum());//update products price
+    }
+
+
 
 }

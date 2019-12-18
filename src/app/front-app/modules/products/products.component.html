@@ -6,9 +6,11 @@
     </app-pagination>
 </div>    
 <div style="width:49%;float:left;border:1px solid #dfdfdf">
-    <app-cart>
+    <app-cart [cartItemsInput]="{cartItems:cartItems,cartItemsSum:cartItemsSum}" 
+        (cartItemsOutput)="increaseDecreaseItem($event)"
+        (removeAllItemsFromCartOutput)="removeAllItemsFromCart($event)"    
+    >
     </app-cart>
 </div>
 
 <hr />
-

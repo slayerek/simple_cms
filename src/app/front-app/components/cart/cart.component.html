@@ -1,24 +1,22 @@
-<p>cart works!</p>
-
-<ng-container *ngIf="cartItems.length">
+<ng-container *ngIf="cartItemsInput.cartItems.length">
     <ul>
-        <li *ngFor="let cartItem of cartItems">
+        <li *ngFor="let cartItem of cartItemsInput.cartItems">
             {{cartItem.name}} - {{ parseNumberToString(cartItem.price) }} - Ilość: {{cartItem.quantity}} <br />
             Rabat ogólny na produkcie : {{ parseNumberToString(cartItem.getProductPrice()) }}<br />
             Suma produktów: {{ parseNumberToString(cartItem.getProductSum()) }}<br />
-            <span (click)="increaseItem(cartItem)">Dodaj</span>&nbsp;
-            <span (click)="decreaseItem(cartItem,cartItems)">Usuń</span>
+            <span (click)="increaseDecreaseItem(cartItem,'add')">Dodaj</span>&nbsp;
+            <span (click)="increaseDecreaseItem(cartItem,'remove')">Usuń</span>
         </li>    
     </ul>    
-</ng-container>
 
-<ng-container *ngIf="cartItems.length">
     <span (click)="removeAllItemsFromCart()">
         Usun wszystkie
     </span>    
     <br />
     <b>
-        Suma : {{ parseNumberToString(cartItemsSum) }}
+        Suma : {{ parseNumberToString(cartItemsInput.cartItemsSum) }}
     </b>    
 
 </ng-container>    
+
+<hr />

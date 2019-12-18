@@ -38,8 +38,9 @@ export class CartService implements Cart {
 
     }
 
-    public removeItemFromCart(product: Product, products: Product[]): void {
+    public removeItemFromCart(product: Product): void {
 
+        const products = this.getItemsFromCart();
         const id = this.findInd(products, product);
 
         if (id > -1) {

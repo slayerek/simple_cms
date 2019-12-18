@@ -1,46 +1,24 @@
-import {Component, OnInit} from '@angular/core';
-import {CartService} from '../../services/cart.service';
-import {Product} from '../../models/product.model';
+import {Component, Input, Output, EventEmitter} from '@angular/core';
 
 @Component({
     selector: 'app-cart',
     templateUrl: './cart.component.html',
     styleUrls: ['./cart.component.scss']
 })
-export class CartComponent implements OnInit {
+export class CartComponent {
 
-    public cartItems: Product[];
-    public cartItemsSum: number = 0;
+    @Output() cartItemsOutput = new EventEmitter<Object>();
+    @Output() removeAllItemsFromCartOutput = new EventEmitter<boolean>();
+    @Input('cartItemsInput') cartItemsInput;
 
-    constructor(private cart: CartService) {}
+    constructor() {}
 
-    ngOnInit() {
-        this.cart.cartItemsMessage.subscribe(cartProds => {
-            this.cartItems = this.cart.getItemsFromCart();
-        });
-        this.cart.cartItemsSum.subscribe(cartItemsSum => {
-            this.cartItemsSum = cartItemsSum;
-        });
-    }
-
-    public increaseItem(product: Product): void {
-        this.cart.addItemToCart(product);
-        this.updateProductsInCart();
-    }
-
-    public decreaseItem(product: Product): void {
-        this.cart.removeItemFromCart(product, this.cartItems);
-        this.updateProductsInCart();
+    public increaseDecreaseItem(product: Object, actionType: string) {
+        this.cartItemsOutput.emit({product: product, actionType: actionType});
     }
 
     public removeAllItemsFromCart(): void {
-        this.cart.removeAllItemsFromCart();
-        this.updateProductsInCart();
-    }
-
-    private updateProductsInCart(): void {
-        this.cart.cartItemsMessage.next(this.cart.getItemsFromCart());//update products in cart
-        this.cart.cartItemsSum.next(this.cart.getProductsSum());//update products price
+        this.removeAllItemsFromCartOutput.emit(true);
     }
 
     public parseNumberToString(price: number, decimals: number = 2): string {
