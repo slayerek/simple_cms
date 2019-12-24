@@ -1,0 +1,17 @@
+<ng-container *ngIf="mainPageView">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h3>
+                    {{ mainPageView.name }}
+                </h3>
+                <p>
+                    {{ mainPageView.short_desc }}
+                </p>  
+                <a [routerLink]="['/',mainPageView.url]">
+                    Więcej
+                </a>     
+            </div>    
+        </div>    
+    </div>  
+</ng-container>
