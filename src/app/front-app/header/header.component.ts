@@ -9,18 +9,16 @@ import {Page} from '../models/page.model';
 })
 export class HeaderComponent implements OnInit {
 
-    public menuData;
+    public menuData: Page[];
 
     constructor(private pages: PagesService) {}
 
     ngOnInit() {
-
         this.pages.getPages().subscribe(
             res => {
                 this.menuData = this.getMenuItems(res);
             }
         )
-
     }
 
     public getMenuItems(arr, itemValue: number = 1, itemName: string = 'menu'): Page[] {

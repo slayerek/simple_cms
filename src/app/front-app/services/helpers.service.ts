@@ -16,4 +16,13 @@ export class HelpersService {
         return item;
 
     }
+
+    public htmlCollectionToArr(collection) {
+        return [...collection];
+    }
+
+    public replaceString(item: string, elementToReplace: string, elementAfterReplace: string) {
+        return item.replace(elementToReplace, elementAfterReplace);
+    }
+
 }

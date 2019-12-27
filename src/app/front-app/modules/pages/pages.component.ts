@@ -24,7 +24,7 @@ export class PagesComponent implements OnInit {
         if (this.pageUrl != '') {
             this.pages.getPage(this.pageUrl).subscribe(
                 res => {
-                    console.log(res)
+                    //console.log(res)
                 }
             );
         }

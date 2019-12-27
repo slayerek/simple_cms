@@ -29,7 +29,8 @@ export class PagesService {
                             page['active'],
                             page['menu'],
                             page['parent_id'],
-                            page['image']
+                            page['image'],
+                            page['subpages']
                         );
                     });
                 }
@@ -58,7 +59,8 @@ export class PagesService {
                             page['active'],
                             page['menu'],
                             page['parent_id'],
-                            page['image']
+                            page['image'],
+                            page['subpages']
                         );
                     }
 

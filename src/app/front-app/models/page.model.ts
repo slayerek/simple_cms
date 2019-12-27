@@ -12,8 +12,9 @@ export class Page implements PageInterface {
     menu: number;
     parent_id: number;
     image: string;
+    subpages: Object[];
 
-    constructor(id: number, name: string, url: string, short_desc: string, long_desc: string, active: number, menu: number, parent_id: number, image?: string) {
+    constructor(id: number, name: string, url: string, short_desc: string, long_desc: string, active: number, menu: number, parent_id: number, image?: string, subpages?: Object[]) {
         this.id = id;
         this.name = name;
         this.url = url;
@@ -23,6 +24,7 @@ export class Page implements PageInterface {
         this.menu = menu;
         this.parent_id = parent_id;
         this.image = image;
+        this.subpages = subpages;
     }
 
 

@@ -7,5 +7,6 @@ export interface PageInterface {
     active: number,
     menu: number,
     parent_id: number,
-    image?: string
+    image?: string,
+    subpages?: Object[]
 }
