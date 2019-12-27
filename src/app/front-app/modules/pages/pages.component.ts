@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {PagesService} from '../../services/pages.service';
 
 @Component({
     selector: 'app-pages',
@@ -7,10 +9,25 @@ import {Component, OnInit} from '@angular/core';
 })
 export class PagesComponent implements OnInit {
 
-    constructor() {}
+    private pageUrl: string;
+
+    constructor(private route: ActivatedRoute, private pages: PagesService) {
+
+        route.params.subscribe(res => {
+            this.pageUrl = res['id'];
+        }
+        )
+
+    }
 
     ngOnInit() {
-
+        if (this.pageUrl != '') {
+            this.pages.getPage(this.pageUrl).subscribe(
+                res => {
+                    console.log(res)
+                }
+            );
+        }
     }
 
 }

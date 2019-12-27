@@ -38,7 +38,7 @@ export class PagesService {
 
     }
 
-    public getPage(url: string, id: number): Observable<Page> {
+    public getPage(url: string = '', id: number = 0): Observable<Page> {
 
         let pageUrl = id ? id : url;
 

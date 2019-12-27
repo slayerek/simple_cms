@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
 import {environment} from '../../../../environments/environment';
 
 @Component({
@@ -8,11 +8,20 @@ import {environment} from '../../../../environments/environment';
 })
 export class MenuComponent implements OnInit {
 
+    @Input('menuData') menuData;
+    @Input('menuClass') menuClass;
+
     public siteName: string = 'Simple CMS';
+    public hideSearch: boolean;
 
     constructor() {}
 
     ngOnInit() {
+
+        this.hideSearch = environment.hideSearch;
+
     }
+
+
 
 }
