@@ -1,5 +1,4 @@
 import {Component, OnInit, Input} from '@angular/core';
-import {environment} from '../../../../environments/environment';
 import {HelpersService} from '../../services/helpers.service';
 import {Router, Event, NavigationStart, NavigationEnd, NavigationError} from '@angular/router';
 
@@ -12,15 +11,14 @@ export class MenuComponent implements OnInit {
 
     @Input('menuData') menuData;
     @Input('menuClass') menuClass;
+    @Input('siteName') siteName;
+    @Input('hideSearch') hideSearch;
 
-    public siteName: string = 'Simple CMS';
-    public hideSearch: boolean;
     private activeUrl: string;
 
     constructor(private helpers: HelpersService, private router: Router) {}
 
     ngOnInit() {
-        this.hideSearch = environment.hideSearch;
 
         this.router.events.subscribe((event: Event) => {
             if (event instanceof NavigationStart) {
