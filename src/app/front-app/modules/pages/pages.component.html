@@ -1,3 +1,9 @@
-<h3>
-    {{}}
-</h3>
+<ng-container *ngIf="pageView !== undefined">
+    <h3>
+        {{ pageView.name }}
+    </h3>
+    <span>
+        {{ pageView.long_desc }}
+    
+    </span>    
+</ng-container>    

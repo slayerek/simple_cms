@@ -9,12 +9,25 @@ export class HelpersService {
 
     public findPageByUrl(arr, url: string | number): Object {
 
-        const item = arr.find((elem) => {
-            return typeof url === 'number' ? elem['id'] == url : elem['url'] == url;
-        });
+        let item;
+
+        for (let elem of arr) {
+
+            if (typeof url === 'number' && elem['id'] == url || typeof url === 'string' && elem['url'] == url) {
+                item = elem;
+            }
+
+            if (elem.subpages !== undefined) {
+                for (let subElem of elem.subpages) {
+                    if (typeof url === 'number' && subElem['id'] == url || typeof url === 'string' && subElem['url'] == url) {
+                        item = subElem;
+                    }
+                }
+            }
+
+        }
 
         return item;
-
     }
 
     public htmlCollectionToArr(collection) {

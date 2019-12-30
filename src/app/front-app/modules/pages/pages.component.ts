@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
 import {Router, Event, NavigationStart, NavigationEnd, NavigationError} from '@angular/router';
 import {PagesService} from '../../services/pages.service';
 import {HelpersService} from '../../services/helpers.service';
+import {Page} from '../../models/page.model';
 
 @Component({
     selector: 'app-pages',
@@ -10,6 +10,8 @@ import {HelpersService} from '../../services/helpers.service';
     styleUrls: ['./pages.component.scss']
 })
 export class PagesComponent implements OnInit {
+
+    public pageView: Page;
 
     constructor(private router: Router, private pages: PagesService, private helpers: HelpersService) {}
 
@@ -26,7 +28,7 @@ export class PagesComponent implements OnInit {
 
                 this.pages.getPage(pageUrl).subscribe(
                     res => {
-                        console.log(res)
+                        this.pageView = res;
                     }
                 );
 
