@@ -38,4 +38,21 @@ export class HelpersService {
         return item.replace(elementToReplace, elementAfterReplace);
     }
 
+    public getGallery(page_desc: any) {
+
+        let regexp = /{{gall_[0-9]}}/g;
+        let array = [...page_desc.matchAll(regexp)];
+        const galleryArray = [];
+
+
+        if (array.length > 1) {
+            for (let gallItem of array) {
+                console.log(gallItem[0].replace(/{{|}}/g, ''));
+            }
+        }
+
+        // console.log(galleryArray);
+
+    }
+
 }

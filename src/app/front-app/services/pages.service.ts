@@ -20,6 +20,9 @@ export class PagesService {
             map(
                 res => {
                     return res.map(page => {
+
+                        this.helpers.getGallery(page['long_desc']);
+
                         return new Page(
                             page['id'],
                             page['name'],
