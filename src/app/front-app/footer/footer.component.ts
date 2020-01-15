@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import {PagesService} from '../services/pages.service';
+import {Page} from '../models/page.model';
 
 @Component({
     selector: 'app-footer',
@@ -7,11 +9,26 @@ import {Component, OnInit} from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
-    public menuData = [{"id": 1, "name": "Strona ", "url": "strona-glowna", "short_desc": "Strona g\u0142\u00f3wna Lorem Ipsum is simply dummy text of the printing and typesetting industry.", "long_desc": "Strona g\u0142\u00f3wna Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. ", "active": 1, "menu": 0, "parent_id": 0, "image": "https=>\/\/s3.amazonaws.com\/uifaces\/faces\/twitter\/follettkyle\/128.jpg"}, {"id": 2, "name": "O nas", "url": "o-nas", "short_desc": "O nas Lorem Ipsum is simply dummy text of the printing and typesetting industry.", "long_desc": "O nas Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. ", "active": 1, "menu": 1, "parent_id": 0, "image": "https=>\/\/s3.amazonaws.com\/uifaces\/faces\/twitter\/follettkyle\/128.jpg", "subpages": [{"id": 5, "name": "O nas - dane kontaktowe Bielsko-Bia\u0142a", "url": "0-nas-dane-kontaktowe-bielsko-biala", "short_desc": "O nas - dane kontaktowe Bielsko-Bia\u0142a Lorem Ipsum is simply dummy text of the printing and typesetting industry.", "long_desc": "O nas - dane kontaktowe Bielsko-Bia\u0142a Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. ", "active": 1, "menu": 1, "parent_id": 0, "image": "https=>\/\/s3.amazonaws.com\/uifaces\/faces\/twitter\/follettkyle\/128.jpg"}, {"id": 6, "name": "O nas - dane kontaktowe Wadowice", "url": "o-nas-dane-kontaktowe-wadowice", "short_desc": "O nas - dane kontaktowe Wadowice Lorem Ipsum is simply dummy text of the printing and typesetting industry.", "long_desc": "O nas - dane kontaktowe Wadowice Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. ", "active": 1, "menu": 1, "parent_id": 0, "image": "https=>\/\/s3.amazonaws.com\/uifaces\/faces\/twitter\/follettkyle\/128.jpg"}]}, {"id": 3, "name": "Galeria", "url": "galeria", "short_desc": "Galeria Lorem Ipsum is simply dummy text of the printing and typesetting industry.", "long_desc": "Galeria Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. ", "active": 1, "menu": 1, "parent_id": 0, "image": "https=>\/\/s3.amazonaws.com\/uifaces\/faces\/twitter\/follettkyle\/128.jpg"}, {"id": 4, "name": "Kontakt", "url": "kontakt", "short_desc": "Kontakt Lorem Ipsum is simply dummy text of the printing and typesetting industry.", "long_desc": "Kontakt Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. ", "active": 1, "menu": 1, "parent_id": 0, "image": "https=>\/\/s3.amazonaws.com\/uifaces\/faces\/twitter\/follettkyle\/128.jpg"}];
+    public menuData: Page[];
 
-    constructor() {}
+    constructor(private pages: PagesService) {}
 
     ngOnInit() {
+        this.pages.getPages().subscribe(
+            res => {
+                this.menuData = this.getMenuItems(res);
+            }
+        )
+    }
+
+    public getMenuItems(arr, itemValue: number = 1, itemName: string = 'menu'): Page[] {
+
+        const items = arr.filter((elem) => {
+            return elem[itemName] == itemValue ? elem : '';
+        });
+
+        return items;
+
     }
 
 }
