@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {PagesService} from '../services/pages.service';
+import {SlidersService} from '../services/sliders.service';
+import {Slider} from '../models/slider.model';
 import {Page} from '../models/page.model';
 
 @Component({
@@ -10,8 +12,9 @@ import {Page} from '../models/page.model';
 export class HeaderComponent implements OnInit {
 
     public menuData: Page[];
+    public slidesData: Slider[] = [];
 
-    constructor(private pages: PagesService) {}
+    constructor(private pages: PagesService, private sliders: SlidersService) {}
 
     ngOnInit() {
         this.pages.getPages().subscribe(
@@ -19,9 +22,15 @@ export class HeaderComponent implements OnInit {
                 this.menuData = this.getMenuItems(res);
             }
         )
+
+        this.sliders.getSlides().subscribe(
+            res => {
+                this.slidesData = res;
+            }
+        );
     }
 
-    public getMenuItems(arr, itemValue: number = 1, itemName: string = 'menu'): Page[] {
+    private getMenuItems(arr, itemValue: number = 1, itemName: string = 'menu'): Page[] {
 
         const items = arr.filter((elem) => {
             return elem[itemName] == itemValue ? elem : '';
@@ -30,5 +39,7 @@ export class HeaderComponent implements OnInit {
         return items;
 
     }
+
+
 
 }
