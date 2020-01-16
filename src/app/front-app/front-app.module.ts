@@ -10,7 +10,6 @@ import {MenuComponent} from './components/menu/menu.component';
 import {ContentComponent} from './content/content.component';
 
 
-
 @NgModule({
     declarations: [
         FrontAppComponent,

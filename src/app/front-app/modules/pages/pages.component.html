@@ -2,8 +2,6 @@
     <h3>
         {{ pageView.name }}
     </h3>
-    <span>
-        {{ pageView.long_desc }}
-    
+    <span [innerHTML]="pageView.long_desc | noSanitize">
     </span>    
 </ng-container>    

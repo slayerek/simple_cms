@@ -13,16 +13,16 @@ export class PagesComponent implements OnInit {
 
     public pageView: Page;
 
-    constructor(private router: Router, private pages: PagesService, private helpers: HelpersService) {}
+    constructor(private router: Router, private pages: PagesService, private helpers: HelpersService) {
 
-    ngOnInit() {
+        router.events.subscribe((event: Event) => {
 
-        this.router.events.subscribe((event: Event) => {
             if (event instanceof NavigationStart) {
                 // Show loading indicator
             }
 
             if (event instanceof NavigationEnd) {
+
                 // Hide loading indicator
                 const pageUrl = this.helpers.replaceString(event.url, '/', '');
 
@@ -40,9 +40,6 @@ export class PagesComponent implements OnInit {
                 console.log(event.error);
             }
         });
-
-
-
 
     }
 

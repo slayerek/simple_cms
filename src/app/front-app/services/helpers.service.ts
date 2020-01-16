@@ -1,11 +1,14 @@
 import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable({
     providedIn: 'root'
 })
 export class HelpersService {
 
-    constructor() {}
+    constructor(private http: HttpClient) {}
 
     public findPageByUrl(arr, url: string | number): Object {
 
@@ -38,21 +41,5 @@ export class HelpersService {
         return item.replace(elementToReplace, elementAfterReplace);
     }
 
-    public getGallery(page_desc: any) {
-
-        let regexp = /{{gall_[0-9]}}/g;
-        let array = [...page_desc.matchAll(regexp)];
-        const galleryArray = [];
-
-
-        if (array.length > 1) {
-            for (let gallItem of array) {
-                console.log(gallItem[0].replace(/{{|}}/g, ''));
-            }
-        }
-
-        // console.log(galleryArray);
-
-    }
 
 }
