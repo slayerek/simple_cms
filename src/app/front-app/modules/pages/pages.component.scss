@@ -1,0 +1,7 @@
+@import "sass/main";
+
+h3 { 
+    color: $color_grey;
+    @include reset-margin;
+    
+}

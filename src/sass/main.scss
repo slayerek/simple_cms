@@ -1,1 +1,40 @@
+/***colors***/
+$color_black : #000;
+$color_grey : #527a7a;
+
+
+/***fonts sizes***/
+$sizes: 12px, 14px, 16px, 18px, 20px;
+
+@each $size in $sizes {
+    .font-#{$size} {
+        font-size: $size;
+        height: $size;
+        width: $size;
+    }//add to class in html, example: class="font-14px"
+}
+
+
+
+
+/***mixin***/
+@mixin reset-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+@mixin reset-margin {
+    margin:0;
+}
+@mixin reset-padding {
+    padding:0;
+}
+
+//@include reset-list;
+
+
+
+
+
 

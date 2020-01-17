@@ -1,7 +1,14 @@
 <ng-container *ngIf="pageView !== undefined">
-    <h3>
-        {{ pageView.name }}
-    </h3>
-    <span [innerHTML]="pageView.long_desc | noSanitize">
-    </span>    
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="text-center">
+                    {{ pageView.name }}
+                </h3>
+                <div [innerHTML]="pageView.long_desc | noSanitize">
+            </div>  
+        </div>    
+    </div>    
+</div>    
+
 </ng-container>    
