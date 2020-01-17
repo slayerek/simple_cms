@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {Router, Event, NavigationStart, NavigationEnd, NavigationError} from '@angular/router';
 import {PagesService} from '../../services/pages.service';
 import {HelpersService} from '../../services/helpers.service';
@@ -9,7 +9,7 @@ import {Page} from '../../models/page.model';
     templateUrl: './pages.component.html',
     styleUrls: ['./pages.component.scss']
 })
-export class PagesComponent implements OnInit {
+export class PagesComponent {
 
     public pageView: Page;
 
