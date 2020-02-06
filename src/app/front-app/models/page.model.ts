@@ -13,8 +13,9 @@ export class Page implements PageInterface {
     parent_id: number;
     image: string;
     subpages: Object[];
+    contact_form: string
 
-    constructor(id: number, name: string, url: string, short_desc: string, long_desc: string, active: number, menu: number, parent_id: number, image?: string, subpages?: Object[]) {
+    constructor(id: number, name: string, url: string, short_desc: string, long_desc: string, active: number, menu: number, parent_id: number, image?: string, subpages?: Object[], contact_form?: string) {
         this.id = id;
         this.name = name;
         this.url = url;
@@ -25,6 +26,7 @@ export class Page implements PageInterface {
         this.parent_id = parent_id;
         this.image = image;
         this.subpages = subpages;
+        this.contact_form = contact_form;
     }
 
 
