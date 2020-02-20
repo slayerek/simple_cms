@@ -14,7 +14,7 @@ export class MenuComponent implements OnInit {
     @Input('siteName') siteName;
     @Input('hideSearch') hideSearch;
 
-    private activeUrl: string;
+    public activeUrl: string;
 
     constructor(private helpers: HelpersService, private router: Router) {}
 

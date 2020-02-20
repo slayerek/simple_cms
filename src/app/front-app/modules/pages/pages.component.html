@@ -1,14 +1,69 @@
-<ng-container *ngIf="pageView !== undefined">
+<ng-container *ngIf="pageModel !== undefined">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <h3 class="text-center">
-                    {{ pageView.name }}
+                    {{ pageModel.name }}
                 </h3>
-                <div [innerHTML]="pageView.long_desc | noSanitize">
-            </div>  
-        </div>    
-    </div>    
-</div>    
+                <div [innerHTML]="pageModel.long_desc | noSanitize">
+                </div>  
+            </div>   
+        </div>
 
+        <ng-container *ngIf="pageModel.contact_form === 'yes'">
+            <form #f="ngForm" (ngSubmit)="onSubmit()" class="needs-validation" novalidate>
+                <div class="form-group">
+                    <label for="name">
+                        Imię i nazwisko
+                    </label>
+                    <input name="name" [(ngModel)]="contactModel.name" #name="ngModel" type="text" class="form-control" id="name" placeholder="Imię i nazwisko" required 
+                           [ngClass]="{
+                           'is-invalid': name.invalid && (name.dirty || name.touched),
+                           'is-valid': name.valid && (name.dirty || name.touched)
+                           }">
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="email">
+                        Adres email
+                    </label>
+                    <input name="email" [(ngModel)]="contactModel.email" #email="ngModel" type="text" class="form-control" id="email" placeholder="Adres email" required pattern="[^ @]*@[^ @]*"
+                           [ngClass]="{
+                           'is-invalid': email.invalid && (email.dirty || email.touched),
+                           'is-valid': email.valid && (email.dirty || email.touched)
+                           }">
+                </div>
+                <div class="form-group">
+                    <label for="description">
+                        Zapytanie
+                    </label>
+                    <textarea name="description" [(ngModel)]="contactModel.description" #description="ngModel" placeholder="Zapytanie" class="form-control" id="description" rows="3" required
+                    [ngClass]="{
+                        'is-invalid' : description.invalid && (description.dirty || description.touched),
+                        'is-valid' : description.valid && (description.dirty || description.touched)
+                    }">
+                    </textarea>
+                </div>
+                <button type="submit" class="btn btn-primary mb-2" [disabled]="f.invalid">
+                    Wyślij zapytanie
+                </button>    
+            </form>  
+            
+            <div class='row' *ngIf="messageSent">
+                <div class='col-md-12'>
+                    <div class="alert alert-success" role="alert">
+                        Wiadomość została wysłana!
+                    </div>
+                </div>    
+            </div>    
+            
+        </ng-container>    
+
+    </div> 
 </ng-container>    
+
+
+
+

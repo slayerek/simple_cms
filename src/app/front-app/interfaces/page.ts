@@ -8,5 +8,6 @@ export interface PageInterface {
     menu: number,
     parent_id: number,
     image?: string,
-    subpages?: Object[]
+    subpages?: Object[],
+    contact_form?: string
 }

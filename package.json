@@ -3,7 +3,7 @@
     "version": "0.0.0",
     "scripts": {
         "ng": "ng",
-        "start": "ng serve",
+        "start": "ng serve --host cms.tescik.ovh --port 4200",
         "build": "ng build",
         "test": "ng test",
         "lint": "ng lint",
@@ -20,9 +20,11 @@
         "@angular/platform-browser-dynamic": "~8.2.3",
         "@angular/router": "~8.2.3",
         "bootstrap": "^4.4.1",
+        "express": "^4.17.1",
         "jquery": "^3.4.1",
         "lightbox2": "^2.11.1",
         "ngx-cookie-service": "^2.2.0",
+        "nodemailer": "^6.4.2",
         "rxjs": "~6.4.0",
         "tslib": "^1.10.0",
         "zone.js": "~0.9.1"
