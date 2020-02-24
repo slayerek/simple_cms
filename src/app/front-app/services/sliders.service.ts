@@ -18,8 +18,8 @@ export class SlidersService {
 
         return this.http.get<Slider[]>(this.apiUrl).pipe(
             map(
-                slide => {
-                    return slide.map(
+                slides => {
+                    return slides.map(
                         slide => {
                             return new Slider(
                                 slide['id'],

@@ -30,8 +30,8 @@ export class PagesService {
                             page['menu'],
                             page['parent_id'],
                             page['image'],
-                            page['subpages'],
-                            page['contact_form']
+                            page['contact_form'],
+                            page['order']
                         );
                     });
                 }

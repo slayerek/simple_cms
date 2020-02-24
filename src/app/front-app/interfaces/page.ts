@@ -9,5 +9,6 @@ export interface PageInterface {
     parent_id: number,
     image?: string,
     subpages?: Object[],
-    contact_form?: string
+    contact_form?: string,
+    order: number
 }
