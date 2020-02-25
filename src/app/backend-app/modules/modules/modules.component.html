@@ -1,3 +1,30 @@
-<ng-containter ngIf="moduleView !== undefined">
-    
-</ng-containter>    
+<table class="table table-dark table-hover">
+    <thead>
+        <tr>
+            <th class="text-center">Nazwa modułu</th>
+            <th class="text-center"> Aktywny</th>
+            <th class="text-center">Kolejność</th>
+            <th class="text-center">Zmiana Kolejności</th>
+        </tr>
+    </thead>
+    <tbody>
+        <ng-container *ngFor="let module of moduleView">
+            <tr>
+                <td class="text-center">
+                    <a [routerLink]="[module.url]">
+                        {{module.name}} 
+                    </a>
+                </td>
+                <td class="text-center">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1" [attr.checked]="module.active == 1">
+                </td>
+                <td class="text-center">
+                    {{module.order}}
+                </td>
+                <td class="text-center">
+                    
+                </td>
+            </tr>
+        </ng-container>    
+    <tbody>
+</table>        

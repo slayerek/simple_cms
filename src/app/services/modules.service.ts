@@ -25,6 +25,7 @@ export class ModulesService {
                             return new Module(
                                 item['id'],
                                 item['name'],
+                                item['url'],
                                 item['active'],
                                 item['order']
                             );
