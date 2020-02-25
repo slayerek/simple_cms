@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {Product} from '../../models/product.model';
-import {ProductsService} from '../../services/products.service';
+import {Product} from '../../../models/product.model';
+import {ProductsService} from '../../../services/products.service';
 import {environment} from '../../../../environments/environment';
-import {CartService} from '../../services/cart.service';
+import {CartService} from '../../../services/cart.service';
 
 @Component({
     selector: 'app-products',

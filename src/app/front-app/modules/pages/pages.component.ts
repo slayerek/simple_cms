@@ -1,9 +1,9 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {Router, Event, NavigationStart, NavigationEnd, NavigationError} from '@angular/router';
-import {PagesService} from '../../services/pages.service';
-import {HelpersService} from '../../services/helpers.service';
-import {Page} from '../../models/page.model';
-import {Contact} from '../../models/contact.model';
+import {PagesService} from '../../../services/pages.service';
+import {HelpersService} from '../../../services/helpers.service';
+import {Page} from '../../../models/page.model';
+import {Contact} from '../../../models/contact.model';
 import {HttpClient} from '@angular/common/http';
 
 

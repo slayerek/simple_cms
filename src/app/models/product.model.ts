@@ -1,5 +1,5 @@
 import {ProductInterface} from '../interfaces/product';
-import {environment} from '../../../environments/environment';
+import {environment} from '../../environments/environment';
 
 export class Product implements ProductInterface {
 

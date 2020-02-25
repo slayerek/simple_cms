@@ -8,7 +8,8 @@ const routes: Routes = [
     {
         path: '', component: BackendAppComponent,
         children: [
-            {path: 'dashboard/strony', loadChildren: () => import('./modules/pages/pages.module').then(m => m.PagesModule)}
+            {path: '', loadChildren: () => import('./modules/modules/modules.module').then(m => m.ModulesModule)},
+            {path: 'strony', loadChildren: () => import('./modules/pages/pages.module').then(m => m.PagesModule)}
         ]
     }
 ];

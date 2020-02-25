@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {PagesService} from '../services/pages.service';
-import {Page} from '../models/page.model';
+import {PagesService} from '../../services/pages.service';
+import {Page} from '../../models/page.model';
 
 @Component({
     selector: 'app-footer',

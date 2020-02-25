@@ -1,5 +1,5 @@
 import {Component, OnInit, Input} from '@angular/core';
-import {HelpersService} from '../../services/helpers.service';
+import {HelpersService} from '../../../services/helpers.service';
 import {Router, Event, NavigationStart, NavigationEnd, NavigationError} from '@angular/router';
 
 @Component({

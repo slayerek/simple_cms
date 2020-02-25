@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {PagesService} from '../services/pages.service';
-import {SlidersService} from '../services/sliders.service';
-import {Slider} from '../models/slider.model';
-import {Page} from '../models/page.model';
+import {PagesService} from '../../services/pages.service';
+import {SlidersService} from '../../services/sliders.service';
+import {Slider} from '../../models/slider.model';
+import {Page} from '../../models/page.model';
 
 @Component({
     selector: 'app-header',
