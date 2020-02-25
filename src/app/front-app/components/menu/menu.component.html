@@ -10,7 +10,7 @@
         <ng-container *ngIf="menuData">
             <ul class="navbar-nav mr-auto">
                 <ng-container *ngFor="let item of menuData;let i = index">
-                    <ng-container *ngIf="item.subpages === undefined">
+                    <ng-container *ngIf="item.subpages.length == 0">
                         <li class="nav-item" [ngClass] = "{ 'active' : activeUrl == item.url }">
                         <a class="nav-link" [routerLink]="['/',item.url]">
                            {{item.name}} 
@@ -20,7 +20,7 @@
                     </ng-container>
                     </li>
                 </ng-container>   
-                <ng-container *ngIf="item.subpages !== undefined">
+                <ng-container *ngIf="item.subpages.length > 0">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             {{item.name}}
