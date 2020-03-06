@@ -10,7 +10,7 @@ const routes: Routes = [
         path: '', component: BackendAppComponent,
         children: [
             {path: '', loadChildren: () => import('./modules/modules/modules.module').then(m => m.ModulesModule), canActivate: [AuthGuard]},
-            {path: 'strony', loadChildren: () => import('./modules/pages/pages.module').then(m => m.PagesModule)},
+            {path: 'strony', loadChildren: () => import('./modules/pages/pages.module').then(m => m.PagesModule), canActivate: [AuthGuard]},
             {path: 'login', loadChildren: () => import('./modules/login/login.module').then(m => m.LoginModule)}
         ]
     }

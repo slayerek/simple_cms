@@ -1,12 +1,19 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 
+import {JwtModule} from "@auth0/angular-jwt";
+
+export function tokenGetter() {
+    return localStorage.getItem("access_token");
+}
+
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import {ErrorIntercept} from './interceptor/error.interceptor';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {CookieService} from 'ngx-cookie-service';
+
 
 @NgModule({
     declarations: [
@@ -15,7 +22,14 @@ import {CookieService} from 'ngx-cookie-service';
     imports: [
         BrowserModule,
         HttpClientModule,
-        AppRoutingModule
+        AppRoutingModule,
+        JwtModule.forRoot({
+            config: {
+                tokenGetter: tokenGetter,
+                whitelistedDomains: ["localhost:4200"],
+                //blacklistedRoutes: ["example.com/examplebadroute/"]
+            }
+        })
     ],
     providers: [
         {
