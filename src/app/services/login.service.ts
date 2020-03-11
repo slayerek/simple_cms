@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
 import {HttpClient} from '@angular/common/http';
+import {Login} from '../models/login.model';
 
 
 @Injectable({
@@ -13,10 +12,13 @@ export class LoginService {
 
     constructor(private http: HttpClient) {}
 
-    public login() {
+    public getJWT(parameters) {
 
+        var formData: any = new FormData();
+        formData.append("email", parameters['email']);
+        formData.append("password", parameters['password']);
 
-
+        return this.http.post<Login>(this.apiUrl, formData, {observe: 'response'})
     }
 
 }
