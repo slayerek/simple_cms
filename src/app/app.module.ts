@@ -2,6 +2,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 
 import {JwtModule} from "@auth0/angular-jwt";
+import {SortablejsModule} from 'ngx-sortablejs';
 
 export function tokenGetter() {
     return localStorage.getItem("access_token");
@@ -29,7 +30,8 @@ import {CookieService} from 'ngx-cookie-service';
                 whitelistedDomains: ["localhost:4200"],
                 //blacklistedRoutes: ["example.com/examplebadroute/"]
             }
-        })
+        }),
+        SortablejsModule.forRoot({animation: 150})
     ],
     providers: [
         {
