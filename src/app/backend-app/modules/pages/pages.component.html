@@ -16,7 +16,7 @@
     
     <tbody [sortablejs]="pagesView" [sortablejsOptions]="options">
         <ng-container *ngFor="let page of pagesView">
-            <tr class=''>
+            <tr [attr.data-id]="page.id">
                 <td class="text-center">
                     {{page.name}} 
                 </td>

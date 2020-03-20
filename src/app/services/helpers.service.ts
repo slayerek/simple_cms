@@ -38,5 +38,9 @@ export class HelpersService {
         return item.replace(elementToReplace, elementAfterReplace);
     }
 
+    public parseStringToNum(item) {
+        return parseInt(item);
+    }
+
 
 }
