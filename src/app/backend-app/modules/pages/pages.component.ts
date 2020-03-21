@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {PagesService} from '../../../services/pages.service';
+import {SortableService} from '../../../services/sortable.service';
 import {Page} from '../../../models/page.model';
 import {SortablejsOptions} from 'ngx-sortablejs';
 
@@ -14,6 +15,7 @@ export class PagesComponent implements OnInit {
     public moduleName: string = 'Strony';
     private moduleTableName: string = 'modules';
     public pagesView: Page[] = [];
+    public sortArr: [] = [];
 
     options: SortablejsOptions = {
         handle: '.sortItem',
@@ -21,12 +23,12 @@ export class PagesComponent implements OnInit {
         // Element dragging ended
         onEnd: function (evt) {
 
-            //const newInd = ;
             const oldIndex = evt.oldIndex;
             const newIndex = evt.newIndex;
             const arr = [...evt.target['rows']];
             const newItemsOrder = [];
             let id = 0;
+            let that = this;
 
             let n = 0;
             while (n < arr.length) {
@@ -34,13 +36,13 @@ export class PagesComponent implements OnInit {
                 newItemsOrder.push({[id]: n});
                 n++;
             }
-            console.log(newItemsOrder)
-            //console.log('new', evt.newIndex)
-            //console.log('old', evt.oldIndex)
-        }
+
+            that.sort.updateSortItems(newItemsOrder);//send new sort order
+
+        }.bind(this)
     };
 
-    constructor(private pages: PagesService) {}
+    constructor(private pages: PagesService, private sort: SortableService) {}
 
     ngOnInit() {
 
@@ -49,6 +51,13 @@ export class PagesComponent implements OnInit {
                 this.pagesView = res;
             }
         );
+
+
+
+        // this.sort.updateSortItems('www').subscribe(
+        //     res => {res}
+        // )
+
 
     }
 
