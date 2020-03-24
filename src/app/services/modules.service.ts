@@ -17,7 +17,6 @@ export class ModulesService {
 
     public getModules(): Observable<Module[]> {
 
-
         const header = {Authorization: `Bearer ${this.authServ.getJwtToken()}`};
 
         return this.http.get<Module[]>(this.apiUrl, {headers: header}).pipe(
@@ -35,12 +34,9 @@ export class ModulesService {
                         }
                     );
                 }
-
             )
         );
 
     }
-
-
 
 }

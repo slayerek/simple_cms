@@ -42,5 +42,9 @@ export class HelpersService {
         return parseInt(item);
     }
 
+    public parseArrToJsonString(arr) {
+        return JSON.stringify(arr);
+    }
+
 
 }

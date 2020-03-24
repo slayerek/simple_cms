@@ -17,6 +17,8 @@ export class LoginService {
         formData.append("email", parameters['email']);
         formData.append("password", parameters['password']);
 
+        console.log(formData)
+
         return this.http.post(this.apiUrl, formData, {observe: 'response'})
     }
 

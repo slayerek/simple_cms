@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {PagesService} from '../../../services/pages.service';
 import {SortableService} from '../../../services/sortable.service';
+import {HelpersService} from '../../../services/helpers.service';
 import {Page} from '../../../models/page.model';
 import {SortablejsOptions} from 'ngx-sortablejs';
 
@@ -13,7 +14,7 @@ import {SortablejsOptions} from 'ngx-sortablejs';
 export class PagesComponent implements OnInit {
 
     public moduleName: string = 'Strony';
-    private moduleTableName: string = 'modules';
+    private moduleModelName: string = 'Page';
     public pagesView: Page[] = [];
     public sortArr: [] = [];
 
@@ -23,8 +24,6 @@ export class PagesComponent implements OnInit {
         // Element dragging ended
         onEnd: function (evt) {
 
-            const oldIndex = evt.oldIndex;
-            const newIndex = evt.newIndex;
             const arr = [...evt.target['rows']];
             const newItemsOrder = [];
             let id = 0;
@@ -36,13 +35,18 @@ export class PagesComponent implements OnInit {
                 newItemsOrder.push({[id]: n});
                 n++;
             }
+            //we are converting newItemsOrder array to json string, in php we are converting into array
 
-            that.sort.updateSortItems(newItemsOrder);//send new sort order
+            that.sort.updateSortItems(that.moduleModelName, that.help.parseArrToJsonString(newItemsOrder)).subscribe(
+                res => {
+                    console.log(res);
+                }
+            );//send new sort order
 
         }.bind(this)
     };
 
-    constructor(private pages: PagesService, private sort: SortableService) {}
+    constructor(private pages: PagesService, private sort: SortableService, private help: HelpersService) {}
 
     ngOnInit() {
 
