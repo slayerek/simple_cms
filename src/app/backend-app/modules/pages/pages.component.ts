@@ -56,13 +56,6 @@ export class PagesComponent implements OnInit {
             }
         );
 
-
-
-        // this.sort.updateSortItems('www').subscribe(
-        //     res => {res}
-        // )
-
-
     }
 
 }
