@@ -1,0 +1,47 @@
+
+<table class="table table-dark table-hover">
+    <thead>
+        <tr>
+            <th class="text-center" colspan="6">
+                Moduł: {{moduleName}}
+            </th>    
+        </tr>    
+        <tr>
+            <ng-container *ngFor="let column of columns">
+                <th class="text-center">
+                    {{column}}
+                </th>
+            </ng-container>    
+        </tr>
+    </thead>
+    
+    <tbody [sortablejs]="pagesView" [sortablejsOptions]="options">
+        <ng-container *ngFor="let item of itemsView">
+            <tr [attr.data-id]="item.id">
+                <td class="text-center">
+                    {{item.name}} 
+                </td>
+                <td class="text-center">
+                    <span>
+                        {{item.url}} 
+                    </span>    
+                </td>
+                <td class="text-center">
+                    <input type="checkbox" class="form-check-input checkbox_active" [attr.checked]="item.active == 1">
+                </td>
+                <td class="text-center">
+                    <input type="checkbox" class="form-check-input checkbox_menu" [attr.checked]="item.menu == 1">
+                </td>
+                <td class="text-center sortItem">
+                    {{item.order}}
+                </td>
+                <td class="text-center ">
+                    <a [routerLink]="[item.url]">
+                        {{item.name}} 
+                    </a>
+                </td>
+            </tr>
+        </ng-container>    
+    </tbody>
+     
+</table>    
