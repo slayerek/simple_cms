@@ -15,7 +15,28 @@ export class SharedTableComponent implements OnInit {
     @Input('columns') columns;
     @Input('itemsView') itemsView;
 
+    public getColumnName(name) {
 
+        try {
+            if (typeof name !== 'object') {
+                throw `this key is not an object : [[ ${name} ]]`;
+            }
+            return Object.keys(name);
+        }
+        catch (err) {
+            console.log('err: ', err);
+        }
+    }
+
+    public getColumnValue(obj) {
+
+        for (let item of obj) {
+            console.log(Object.values(item));
+        }
+        // console.log(Object.values
+        // return Object.values(obj);
+
+    }
 
     options: SortablejsOptions = {
         handle: '.sortItem',
