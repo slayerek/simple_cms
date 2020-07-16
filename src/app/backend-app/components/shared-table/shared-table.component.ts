@@ -16,6 +16,7 @@ export class SharedTableComponent implements OnInit, AfterViewInit {
     @Input('itemsView') itemsView;
     @Output() output = new EventEmitter<string>();
 
+<<<<<<< HEAD
     @ViewChild("sortUp", {static: false}) sortUpView: ElementRef;
     @ViewChild("sortDown", {static: false}) sortDownView: ElementRef;
 
@@ -42,18 +43,19 @@ export class SharedTableComponent implements OnInit, AfterViewInit {
         this.output.emit(dir);
     }
 
+
     public getColumnName(name) {
         try {
             if (typeof name !== 'object') {
                 throw `this key is not an object : [[ ${name} ]]`;
             }
-
             return Object.keys(name);
         }
         catch (err) {
             console.log('err: ', err);
         }
     }
+
 
     public getColumnValue(name) {
         try {
