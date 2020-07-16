@@ -1,48 +1,6 @@
-<table class="table table-dark table-hover">
-    <thead>
-        <tr>
-            <th class="text-center" colspan="6">
-                Moduł: {{moduleName}}
-            </th>    
-        </tr>    
-        <tr>
-            <th class="text-center">Nazwa</th>
-            <th class="text-center">Url</th>
-            <th class="text-center">Aktywny</th>
-            <th class="text-center">Menu</th>
-            <th class="text-center">Kolejność</th>
-            <th class="text-center">Edycja</th>
-        </tr>
-    </thead>
-    
-    <tbody [sortablejs]="pagesView" [sortablejsOptions]="options">
-        <ng-container *ngFor="let page of pagesView">
-            <tr [attr.data-id]="page.id">
-                <td class="text-center">
-                    {{page.name}} 
-                </td>
-                <td class="text-center">
-                    <span>
-                        {{page.url}} 
-                    </span>    
-                </td>
-                <td class="text-center">
-                    <input type="checkbox" class="form-check-input checkbox_active" [attr.checked]="page.active == 1">
-                </td>
-                <td class="text-center">
-                    <input type="checkbox" class="form-check-input checkbox_menu" [attr.checked]="page.menu == 1">
-                </td>
-                <td class="text-center sortItem">
-                    {{page.order}}
-                </td>
-                <td class="text-center ">
-                    <a [routerLink]="[page.url]">
-                        {{page.name}} 
-                    </a>
-                </td>
-            </tr>
-        </ng-container>    
-    </tbody>
-     
-</table>    
+<app-shared-table (output)="updateSortingList($event)" [moduleModelName]="'Page'" [moduleName]="'Strony'" [itemsView]="pagesView" 
+[columns]="[{'Nazwa' : 'name' } ,{'Url':'url'},{'Aktywny':'active'},{'Menu':'menu'},{'Kolejność':'order'},{'Edycja':'edit'}]">
+</app-shared-table>
+
+
 

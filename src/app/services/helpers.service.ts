@@ -46,5 +46,16 @@ export class HelpersService {
         return JSON.stringify(arr);
     }
 
+    public sortItems(items, dir = 'asc', field = 'order') {
+        return items.sort((a, b) => {
+            switch (dir) {
+                case 'desc':
+                    return b[field] - a[field];
+                    break;
+                default:
+                    return a[field] - b[field];
+            }
+        });
+    }
 
 }

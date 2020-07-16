@@ -1,3 +1,6 @@
 .sortItem { cursor: move;cursor: -webkit-grabbing;}
 table { overflow : hidden }
 table .form-check-input { position:static;margin:0 }
+table .sortItem svg { color:#fff;cursor:pointer;padding-left:10px; }
+table .sort-down-alt.desc { display:none; }
+table .sort-down-alt, table .sort-up-alt { cursor:pointer }

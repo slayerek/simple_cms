@@ -1,4 +1,4 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef, AfterViewInit} from '@angular/core';
 import {SortableService} from '../../../services/sortable.service';
 import {HelpersService} from '../../../services/helpers.service';
 import {SortablejsOptions} from 'ngx-sortablejs';
@@ -8,14 +8,65 @@ import {SortablejsOptions} from 'ngx-sortablejs';
     templateUrl: './shared-table.component.html',
     styleUrls: ['./shared-table.component.scss']
 })
-export class SharedTableComponent implements OnInit {
+export class SharedTableComponent implements OnInit, AfterViewInit {
 
     @Input('moduleModelName') moduleModelName;
     @Input('moduleName') moduleName;
     @Input('columns') columns;
     @Input('itemsView') itemsView;
+    @Output() output = new EventEmitter<string>();
 
+    @ViewChild("sortUp", {static: false}) sortUpView: ElementRef;
+    @ViewChild("sortDown", {static: false}) sortDownView: ElementRef;
 
+    constructor(private sort: SortableService, private help: HelpersService) {}
+
+    ngOnInit() {
+
+    }
+
+    ngAfterViewInit() {
+
+    }
+
+    public sorting(dir) {
+
+        if (dir == 'desc') {
+            this.sortDownView.nativeElement.style.display = "inline-block";
+            this.sortUpView.nativeElement.style.display = "none";
+        } else if (dir == 'asc') {
+            this.sortUpView.nativeElement.style.display = "inline-block";
+            this.sortDownView.nativeElement.style.display = "none";
+        }
+
+        this.output.emit(dir);
+    }
+
+    public getColumnName(name) {
+        try {
+            if (typeof name !== 'object') {
+                throw `this key is not an object : [[ ${name} ]]`;
+            }
+
+            return Object.keys(name);
+        }
+        catch (err) {
+            console.log('err: ', err);
+        }
+    }
+
+    public getColumnValue(name) {
+        try {
+            if (typeof name !== 'object') {
+                throw `this key is not an object : [[ ${name} ]]`;
+            }
+
+            return Object.values(name)[0];
+        }
+        catch (err) {
+            console.log('err: ', err);
+        }
+    }
 
     options: SortablejsOptions = {
         handle: '.sortItem',
@@ -45,10 +96,6 @@ export class SharedTableComponent implements OnInit {
         }.bind(this)
     };
 
-    constructor(private sort: SortableService, private help: HelpersService) {}
 
-    ngOnInit() {
-
-    }
 
 }

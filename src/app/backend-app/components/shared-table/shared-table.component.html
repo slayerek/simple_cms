@@ -9,7 +9,15 @@
         <tr>
             <ng-container *ngFor="let column of columns">
                 <th class="text-center">
-                    {{column}}
+                    {{getColumnName(column)}}
+                    <ng-container *ngIf="getColumnValue(column) == 'order'">
+                        <svg (click)="sorting('desc')" #sortUp class="bi sort-up-alt asc" width="22" height="22" fill="£fff">
+                            <use xlink:href="/assets/bootstrap-icons/bootstrap-icons.svg#sort-up-alt"/>
+                        </svg>  
+                        <svg (click)="sorting('asc')" #sortDown class="bi sort-down-alt desc" width="22" height="22" fill="£fff">
+                            <use xlink:href="/assets/bootstrap-icons/bootstrap-icons.svg#sort-down-alt"/>
+                        </svg>   
+                    </ng-container>
                 </th>
             </ng-container>    
         </tr>
@@ -33,7 +41,7 @@
                     <input type="checkbox" class="form-check-input checkbox_menu" [attr.checked]="item.menu == 1">
                 </td>
                 <td class="text-center sortItem">
-                    {{item.order}}
+                    {{item.order}} 
                 </td>
                 <td class="text-center ">
                     <a [routerLink]="[item.url]">
@@ -43,5 +51,6 @@
             </tr>
         </ng-container>    
     </tbody>
-     
-</table>    
+</table>
+ 
+{{ columns | json }}
