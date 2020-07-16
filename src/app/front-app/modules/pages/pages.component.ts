@@ -15,7 +15,7 @@ import {HttpClient} from '@angular/common/http';
 })
 export class PagesComponent implements OnInit {
 
-    @ViewChild('f') form: any;
+    @ViewChild('f', {static: false}) form: any;
     public contactModel: Contact;
     public pageModel: Page;
     public messageSent: boolean = false;

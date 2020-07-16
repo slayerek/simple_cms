@@ -23,11 +23,10 @@
         </tr>
     </thead>
     
-    <tbody [sortablejs]="pagesView" [sortablejsOptions]="options">
+    <tbody [sortablejs]="itemsView" [sortablejsOptions]="options">
         <ng-container *ngFor="let item of itemsView">
             <tr [attr.data-id]="item.id">
                 <td class="text-center">
-                    {{ getColumnValue(columns) }}
                     {{item.name}} 
                 </td>
                 <td class="text-center">
@@ -52,11 +51,4 @@
             </tr>
         </ng-container>    
     </tbody>
-
 </table>
- 
-=======
-     
-</table>
-
-{{ columns | json }}
