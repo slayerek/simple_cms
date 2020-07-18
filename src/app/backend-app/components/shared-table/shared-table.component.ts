@@ -15,8 +15,8 @@ export class SharedTableComponent implements OnInit, AfterViewInit {
     @Input('moduleName') moduleName;
     @Input('columns') columns;
     @Input('itemsView') itemsView;
-    @Output() output = new EventEmitter<string>();
 
+    @Output() output = new EventEmitter<string>();
 
     @ViewChild("sortUp", {static: false}) sortUpView: ElementRef;
     @ViewChild("sortDown", {static: false}) sortDownView: ElementRef;
