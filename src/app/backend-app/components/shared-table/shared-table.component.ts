@@ -1,5 +1,6 @@
 import {Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef, AfterViewInit} from '@angular/core';
 import {SortableService} from '../../../services/sortable.service';
+import {CheckboxService} from '../../../services/checkbox.service';
 import {HelpersService} from '../../../services/helpers.service';
 import {SortablejsOptions} from 'ngx-sortablejs';
 
@@ -20,7 +21,7 @@ export class SharedTableComponent implements OnInit, AfterViewInit {
     @ViewChild("sortUp", {static: false}) sortUpView: ElementRef;
     @ViewChild("sortDown", {static: false}) sortDownView: ElementRef;
 
-    constructor(private sort: SortableService, private help: HelpersService) {}
+    constructor(private sort: SortableService,private checkbox: CheckboxService ,private help: HelpersService) {}
 
     ngOnInit() {
 
@@ -28,6 +29,13 @@ export class SharedTableComponent implements OnInit, AfterViewInit {
 
     ngAfterViewInit() {
 
+    }
+
+    checkboxStatus(status,field,id) {
+        this.checkbox.updateCheckboxStatus(status,field,id,this.moduleModelName).subscribe(
+        res => {
+            console.log(res)
+        });
     }
 
     public sorting(dir) {

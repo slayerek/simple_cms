@@ -15,11 +15,11 @@ import {HttpClient} from '@angular/common/http';
 })
 export class PagesComponent implements OnInit {
 
-    @ViewChild('f', {static: false}) form: any;
     public contactModel: Contact;
     public pageModel: Page;
     public messageSent: boolean = false;
 
+    @ViewChild('f', {static: false}) form: any;
 
     constructor(private router: Router, private pages: PagesService, private helpers: HelpersService, private http: HttpClient) {
 
