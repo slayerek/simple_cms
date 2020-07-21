@@ -1,4 +1,4 @@
-import {Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef, AfterViewInit} from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef} from '@angular/core';
 import {SortableService} from '../../../services/sortable.service';
 import {CheckboxService} from '../../../services/checkbox.service';
 import {HelpersService} from '../../../services/helpers.service';
@@ -9,7 +9,7 @@ import {SortablejsOptions} from 'ngx-sortablejs';
     templateUrl: './shared-table.component.html',
     styleUrls: ['./shared-table.component.scss']
 })
-export class SharedTableComponent implements OnInit, AfterViewInit {
+export class SharedTableComponent implements OnInit {
 
     @Input('moduleModelName') moduleModelName;
     @Input('moduleName') moduleName;
@@ -21,21 +21,17 @@ export class SharedTableComponent implements OnInit, AfterViewInit {
     @ViewChild("sortUp", {static: false}) sortUpView: ElementRef;
     @ViewChild("sortDown", {static: false}) sortDownView: ElementRef;
 
-    constructor(private sort: SortableService,private checkbox: CheckboxService ,private help: HelpersService) {}
+    constructor(private sort: SortableService, private checkbox: CheckboxService, private help: HelpersService) {}
 
-    ngOnInit() {
+    public keepOriginalOrder = (a, b) => a.key;
 
-    }
+    ngOnInit() {}
 
-    ngAfterViewInit() {
-
-    }
-
-    checkboxStatus(status,field,id) {
-        this.checkbox.updateCheckboxStatus(status,field,id,this.moduleModelName).subscribe(
-        res => {
-            console.log(res)
-        });
+    checkboxStatus(status, field, id) {
+        this.checkbox.updateCheckboxStatus(status, field, id, this.moduleModelName).subscribe(
+            res => {
+                console.log(res)
+            });
     }
 
     public sorting(dir) {
@@ -51,31 +47,46 @@ export class SharedTableComponent implements OnInit, AfterViewInit {
         this.output.emit(dir);
     }
 
+    public getObjectKey(obj: {}, columnName: string): string {
+        const item = Object.keys(obj)[0];
 
-    public getColumnName(name) {
+        if (item === columnName) {
+            return Object.keys(obj)[0];
+        }
+        return '';
+    }
+
+    public getColumnName(obj) {
         try {
-            if (typeof name !== 'object') {
-                throw `this key is not an object : [[ ${name} ]]`;
+            if (typeof obj !== 'object') {
+                throw `this is not an object : [[ ${obj} ]]`;
             }
-            return Object.keys(name);
+
+            return Object.values(obj)[0];
         }
         catch (err) {
             console.log('err: ', err);
         }
     }
 
+    public getColumnValue(item, columns): Object | boolean {
 
-    public getColumnValue(name) {
-        try {
-            if (typeof name !== 'object') {
-                throw `this key is not an object : [[ ${name} ]]`;
-            }
+        const columnKeys = [];
 
-            return Object.values(name)[0];
+        for (var i = 0; i < columns.length; i++) {
+            const keyName = Object.keys(columns[i])[0];
+            columnKeys.push(keyName);
         }
-        catch (err) {
-            console.log('err: ', err);
+
+        const index = columnKeys.indexOf(item);
+
+        if (index > - 1) {
+
+            return {value: columnKeys[index], type: columns[index]['type']};
         }
+
+        return false;
+
     }
 
     options: SortablejsOptions = {

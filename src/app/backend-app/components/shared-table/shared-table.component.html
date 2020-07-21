@@ -9,7 +9,7 @@
             <ng-container *ngFor="let column of columns">
                 <th class="text-center">
                     {{getColumnName(column)}}
-                    <ng-container *ngIf="getColumnValue(column) == 'order'">
+                    <ng-container *ngIf="getObjectKey(column,'order')">
                         <svg (click)="sorting('desc')" #sortUp class="bi sort-up-alt asc" width="22" height="22" fill="£fff">
                             <use xlink:href="/assets/bootstrap-icons/bootstrap-icons.svg#sort-up-alt"/>
                         </svg>  
@@ -25,29 +25,35 @@
     <tbody [sortablejs]="itemsView" [sortablejsOptions]="options">
         <ng-container *ngFor="let item of itemsView">
             <tr [attr.data-id]="item.id">
-                <td class="text-center">
-                    {{item.name}} 
-                </td>
-                <td class="text-center">
-                    <span>
-                        {{item.url}} 
-                    </span>    
-                </td>
-                <td class="text-center">
-                    <input #active (click)="checkboxStatus(active.checked,'active',item.id)" type="checkbox" class="form-check-input checkbox_active" [attr.checked]="item.active == 1">
-                </td>
-                <td class="text-center">
-                    <input #menu (click)="checkboxStatus(menu.checked,'menu',item.id)" type="checkbox" class="form-check-input checkbox_menu" [attr.checked]="item.menu == 1">
-                </td>
-                <td class="text-center sortItem">
-                    {{item.order}} 
-                </td>
-                <td class="text-center ">
-                    <a [routerLink]="[item.url]">
-                        {{item.name}} 
-                    </a>
-                </td>
+                <ng-container *ngFor="let item2 of item | keyvalue:keepOriginalOrder">
+                    <ng-container *ngIf="item2.key == getColumnValue(item2.key,columns)['value']" [ngSwitch]="getColumnValue(item2.key,columns)['type']">
+                        <ng-container *ngSwitchCase="'text'">
+                            <td class="text-center">
+                                {{ item2.value }}
+                            </td> 
+                        </ng-container>    
+                        <ng-container *ngSwitchCase="'checkbox'">
+                            <td class="text-center">
+                                <input #active (click)="checkboxStatus(active.checked,item2['key'],item.id)" type="checkbox" class="form-check-input" [attr.checked]="item.active == 1">
+                            </td>    
+                        </ng-container>    
+                        <ng-container *ngSwitchCase="'anchor'">
+                            <td class="text-center">
+                                <a [routerLink]="[item.url]">
+                                    {{item2.value}} 
+                                </a>
+                            </td>    
+                        </ng-container>    
+                        <ng-container *ngSwitchCase="'order'">
+                            <td class="text-center sortItem">
+                                {{item.order}} 
+                            </td>
+                        </ng-container>    
+                    </ng-container>
+                </ng-container>
             </tr>
         </ng-container>    
     </tbody>
 </table>
+
+

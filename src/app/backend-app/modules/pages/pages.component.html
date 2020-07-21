@@ -1,5 +1,19 @@
-<app-shared-table (output)="updateSortingList($event)" [moduleModelName]="'Page'" [moduleName]="'Strony'" [itemsView]="pagesView" 
-[columns]="[{'Nazwa' : 'name' } ,{'Url':'url'},{'Aktywny':'active'},{'Menu':'menu'},{'Kolejność':'order'},{'Edycja':'edit'}]">
+<app-shared-table 
+    (output)="updateSortingList($event)" 
+    
+    [moduleModelName]="'Page'" 
+    
+    [moduleName]="'Strony'" 
+    
+    [itemsView]="pagesView" 
+    
+    [columns]="[
+        { name : 'Nazwa' , type : 'anchor' },
+        { url : 'Url' , type : 'text' },
+        { active : 'Aktywny' , type : 'checkbox'  },
+        { menu : 'Menu', type : 'checkbox' },
+        { order : 'Kolejność', type : 'order' }
+    ]">
 </app-shared-table>
 
 
