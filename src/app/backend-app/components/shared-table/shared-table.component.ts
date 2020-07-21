@@ -56,7 +56,7 @@ export class SharedTableComponent implements OnInit {
         return '';
     }
 
-    public getColumnName(obj) {
+    public getColumnName(obj): Object {
         try {
             if (typeof obj !== 'object') {
                 throw `this is not an object : [[ ${obj} ]]`;
@@ -81,7 +81,6 @@ export class SharedTableComponent implements OnInit {
         const index = columnKeys.indexOf(item);
 
         if (index > - 1) {
-
             return {value: columnKeys[index], type: columns[index]['type']};
         }
 

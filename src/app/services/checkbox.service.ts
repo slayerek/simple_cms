@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {AuthService} from './auth.service';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class CheckboxService {
 
@@ -11,7 +11,7 @@ export class CheckboxService {
 
     constructor(private http: HttpClient, private authServ: AuthService) {}
 
-    updateCheckboxStatus(status,field,id,modelName) {
+    updateCheckboxStatus(status, field, id, modelName) {
 
         const header = {Authorization: `Bearer ${this.authServ.getJwtToken()}`};
         let formData: any = new FormData();

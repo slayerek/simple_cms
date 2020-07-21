@@ -34,7 +34,7 @@
                         </ng-container>    
                         <ng-container *ngSwitchCase="'checkbox'">
                             <td class="text-center">
-                                <input #active (click)="checkboxStatus(active.checked,item2['key'],item.id)" type="checkbox" class="form-check-input" [attr.checked]="item.active == 1">
+                                <input #active (click)="checkboxStatus(active.checked,item2['key'],item.id)" type="checkbox" class="form-check-input checkbox_menu" [checked]="item[item2['key']] == 1 ? true : false">
                             </td>    
                         </ng-container>    
                         <ng-container *ngSwitchCase="'anchor'">
