@@ -1,4 +1,17 @@
-<p class="tescik">page works!</p>
+<ng-container *ngIf="pageModel !== undefined">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="text-center">
+                    {{ pageModel.name }}
+                </h3>
+                <div [innerHTML]="pageModel.long_desc | noSanitize">
+                </div>  
+            </div>   
+        </div>
+    </div> 
+</ng-container>    
+
 
 
 

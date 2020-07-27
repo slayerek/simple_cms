@@ -9,12 +9,15 @@ import {PageComponent} from './page/page.component';
 
 import {SharedTableComponent} from '../../components/shared-table/shared-table.component';
 
+import {PipesModule} from '../../../pipes/pipes.module';
+
 @NgModule({
     declarations: [PagesComponent, PageComponent, SharedTableComponent],
     imports: [
         CommonModule,
         PagesRoutingModule,
-        SortablejsModule
+        SortablejsModule,
+        PipesModule
     ]
 })
 export class PagesModule {}

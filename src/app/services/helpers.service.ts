@@ -38,6 +38,12 @@ export class HelpersService {
         return item.replace(elementToReplace, elementAfterReplace);
     }
 
+    public getLastElementOfUrl(item: string): string {
+        const urlArr = item.split('/');
+
+        return urlArr.pop();
+    }
+
     public parseStringToNum(item) {
         return parseInt(item);
     }
